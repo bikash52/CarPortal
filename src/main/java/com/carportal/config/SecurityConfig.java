@@ -23,8 +23,9 @@ public class SecurityConfig {
 //         http.authorizeHttpRequests().anyRequest().permitAll();
 
         http.authorizeHttpRequests()
-                .requestMatchers("/api/v3/auth/login","/api/v3/auth/sign-up")
+                .requestMatchers("/api/v3/auth/login","/api/v3/auth/user/sign-up","/api/v3/auth/owner/sign-up")
                 .permitAll()
+                .requestMatchers("/api/v3/car").hasRole("USER")
                 .anyRequest().authenticated();
          return http.build();
     }
